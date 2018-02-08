@@ -1,8 +1,5 @@
 #include <stdio.h>
 
-#define MAX_SIZE 50
-
-int binary_search(int a[],int low,int high,int key);
 int addition_in_radix_n(int a,int b,int n);
 
 int main()
@@ -58,9 +55,9 @@ int main()
 /*Add number a and number b bitwise without any carry*/
 int addition_in_radix_n(int a,int b,int n)
 {
-	int i=0,j=0;
 	int result=0;
-	int lowest=0;
+	int weight=1;
+	int digit=0;
 
 	if(n<=0)
 	{
@@ -69,18 +66,14 @@ int addition_in_radix_n(int a,int b,int n)
 
 	while(a>0||b>0)
 	{
-		lowest=(a%n+b%n)%n;
-		for(i=0;i<j;++i)
-		{
-			lowest*=n;
-		}
-		result+=lowest;
+		digit=(a%n+b%n)%n;
+		digit*=weight;
+		result+=digit;
 		a/=n;
 		b/=n;
-		++j;
+		weight*=n;
 	}
 
 	return result;
-
 }
 
